@@ -128,3 +128,4 @@ Erik Voeten, **«United Nations General Assembly Ideal Points»**, Harvard Datav
   (создаётся `scripts/plot_yes_share.py`, график — `figures/yes_share_by_year.png`).
 - `random_votes_to_check.csv` — 5 случайных голосований для ручной проверки в UN Digital Library
   (создаётся `scripts/sample_votes_for_check.py`).
+- `report/index.html` — итоговый отчёт одной страницей (создаётся `scripts/build_report.py`).

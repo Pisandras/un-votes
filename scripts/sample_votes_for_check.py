@@ -30,7 +30,9 @@ for rcid in chosen:
     one = v[v["rcid"] == rcid]
     info = one.iloc[0]
     row = dict(rcid=rcid, date=str(info["date"]), session=int(info["session"]),
-               resolution=info["unres"], short=info["short"])
+               resolution=info["unres"],
+               short=(info["short"] if isinstance(info["short"], str) and info["short"].strip()
+                      else str(info["descr"]).split(":")[0].strip()))
     votes = one[one["ccode"].isin(COUNTRIES)].set_index("ccode")["vote"]
     for code, name in COUNTRIES.items():
         row[name] = VOTE.get(votes.get(code), "нет записи")
