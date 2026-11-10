@@ -26,3 +26,13 @@ for f in json.load(sys.stdin)["data"]:
   fi
 done
 echo "Готово. Файлы лежат в $OUT/"
+
+# --- Сырые голоса из старой версии 33 (июнь 2024, сессии 1–78) ---
+# В текущей версии их нет, поэтому берём по id файла из версии 33.
+OLD="$OUT/v33"
+mkdir -p "$OLD"
+for pair in "10295576 UNVotes-1.RData" "10295577 Codebook-1.docx"; do
+  id=${pair%% *}; name=${pair#* }
+  if [[ -s "$OLD/$name" ]]; then echo "уже есть: v33/$name"
+  else echo "скачиваю: v33/$name"; curl -sSfL "$API/access/datafile/$id" -o "$OLD/$name"; fi
+done
